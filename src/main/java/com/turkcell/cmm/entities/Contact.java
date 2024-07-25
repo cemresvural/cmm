@@ -15,7 +15,7 @@ import lombok.Setter;
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long contact_id;
 
     @Column(name = "contact_type", nullable = false)
     private String contactType;
@@ -33,11 +33,11 @@ public class Contact {
     private LocalDateTime updatedAt;*/
 
     public Long getId() {
-        return id;
+        return contact_id;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.contact_id = id;
     }
 
     public String getContactType() {
