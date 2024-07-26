@@ -3,7 +3,11 @@ package com.turkcell.cmm.entities;
 
 import com.turkcell.cmm.core.entities.BaseUpdateableEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.Getter;
+
 
 @Entity
 @Getter
@@ -26,59 +30,5 @@ public class CustomerDetail extends BaseUpdateableEntity {
     @JoinColumn(name = "customer_id")
     private Customer  customer;
 
-    public Long getDetailId() {
-        return detailId;
-    }
 
-    public void setDetailId(Long detailId) {
-        this.detailId = detailId;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getBirthPlace() {
-        return birthPlace;
-    }
-
-    public void setBirthPlace(String birthPlace) {
-        this.birthPlace = birthPlace;
-    }
-
-    public String getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(String birthDate) {
-        this.birthDate = birthDate;
-    }
-
-    public String getPassportNo() {
-        return passportNo;
-    }
-
-    public void setPassportNo(String passportNo) {
-        this.passportNo = passportNo;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }

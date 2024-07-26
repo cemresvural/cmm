@@ -16,11 +16,11 @@ import java.util.List;
 // dependencyler arasına ekle çünkü bu dependency olarak kullanılabilecek bir nesnedir bir servicedir. !bean(bağımlılık)tanımayacak
 public class CustomerServiceImpl implements CustomerService {
    private final CustomerRepository customerRepository;
-   private final ModelMapperService modellMapperService;
+   private final ModelMapperService modelMapperService;
 
     @Override
     public void add(CreateCustomerDto dto) {
-        Customer customer =modellMapperService.forRequest().map(dto,Customer.class);
+        Customer customer =modelMapperService.forRequest().map(dto,Customer.class);
         customerRepository.save(customer);
     }
 

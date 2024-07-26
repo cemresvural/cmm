@@ -31,29 +31,7 @@ public class Countries {
     @Column(name = "country_code", nullable = false)
     private String countryCode;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNationalityCode() {
-        return nationalityCode;
-    }
-
-    public void setNationalityCode(String nationalityCode) {
-        this.nationalityCode = nationalityCode;
-    }
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(String countryCode) {
-        this.countryCode = countryCode;
-    }
     /*
 Base Entity
     @Column(name = "create_date", updatable = false)

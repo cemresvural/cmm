@@ -3,7 +3,10 @@ package com.turkcell.cmm.entities;
 
 import com.turkcell.cmm.core.entities.BaseUpdateableEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -12,7 +15,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "CRM", name="CUSTOMER")
+@Table(schema = "CRM", name="CUSTOMERS")
 public class Customer extends BaseUpdateableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,35 +31,5 @@ public class Customer extends BaseUpdateableEntity {
    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
     private CustomerDetail customerDetail;
 
-    public Long getCustomerId() {
-        return customerId;
-    }
 
-    public void setCustomerId(Long customerId) {
-        this.customerId = customerId;
-    }
-
-    public String getIdentityNo() {
-        return identityNo;
-    }
-
-    public void setIdentityNo(String identityNo) {
-        this.identityNo = identityNo;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public CustomerDetail getCustomerDetail() {
-        return customerDetail;
-    }
-
-    public void setCustomerDetail(CustomerDetail customerDetail) {
-        this.customerDetail = customerDetail;
-    }
 }

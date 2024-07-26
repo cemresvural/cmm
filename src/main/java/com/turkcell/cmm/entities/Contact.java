@@ -11,7 +11,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(schema = "CRM", name = "Contacts")
+@Table(schema = "CRM", name = "CUSTOMER_CONTACT_INFO")
 public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,35 +32,4 @@ public class Contact {
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;*/
 
-    public Long getId() {
-        return contact_id;
-    }
-
-    public void setId(Long id) {
-        this.contact_id = id;
-    }
-
-    public String getContactType() {
-        return contactType;
-    }
-
-    public void setContactType(String contactType) {
-        this.contactType = contactType;
-    }
-
-    public String getContactInfo() {
-        return contactInfo;
-    }
-
-    public void setContactInfo(String contactInfo) {
-        this.contactInfo = contactInfo;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 }
