@@ -1,5 +1,6 @@
 package com.turkcell.cmm.entities;
 
+import com.turkcell.cmm.core.entities.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM",name = "COUNTRIES")
-public class Countries {
+public class Countries extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id")

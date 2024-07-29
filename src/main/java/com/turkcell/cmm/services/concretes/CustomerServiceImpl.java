@@ -1,7 +1,8 @@
 package com.turkcell.cmm.services.concretes;
 
 import com.turkcell.cmm.Dtos.Customer.CreateCustomerDto;
-import com.turkcell.cmm.core.utilities.mappers.ModelMapperService;
+import com.turkcell.cmm.Dtos.Customer.UpdateCustomerDto;
+import com.turkcell.cmm.core.mappers.ModelMapperService;
 import com.turkcell.cmm.entities.Customer;
 import com.turkcell.cmm.repository.CustomerRepository;
 import com.turkcell.cmm.services.abstracts.CustomerService;
@@ -25,7 +26,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public void update(Customer customer) {
+    public void update(UpdateCustomerDto dto) {
 
     }
 

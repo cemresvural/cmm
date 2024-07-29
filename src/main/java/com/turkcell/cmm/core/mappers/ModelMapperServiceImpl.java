@@ -1,4 +1,4 @@
-package com.turkcell.cmm.core.utilities.mappers;
+package com.turkcell.cmm.core.mappers;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
