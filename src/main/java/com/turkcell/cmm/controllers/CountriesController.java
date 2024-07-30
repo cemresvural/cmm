@@ -1,9 +1,10 @@
 package com.turkcell.cmm.controllers;
 
-import com.turkcell.cmm.Dtos.Countries.CreateCountriesDto;
+import com.turkcell.cmm.business.Dtos.Requests.Countries.CreateCountriesDto;
 
 import com.turkcell.cmm.entities.Countries;
-import com.turkcell.cmm.services.abstracts.CountriesService;
+import com.turkcell.cmm.business.abstracts.CountriesService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/countries")
-@RequiredArgsConstructor
+@AllArgsConstructor
 public class CountriesController {
 
     private final CountriesService countriesService;

@@ -1,7 +1,7 @@
 package com.turkcell.cmm.entities;
 
 
-import com.turkcell.cmm.core.entities.BaseUpdateableEntity;
+import com.turkcell.cmm.core.business.entities.BaseUpdateableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;

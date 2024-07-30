@@ -1,5 +1,6 @@
 package com.turkcell.cmm.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,11 @@ public class Contact {
 
     @Column(name = "status", nullable = false)
     private String status;
+
+    @OneToOne
+    @JsonBackReference
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
    /* @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

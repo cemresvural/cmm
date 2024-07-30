@@ -1,7 +1,8 @@
 package com.turkcell.cmm.entities;
 
 
-import com.turkcell.cmm.core.entities.BaseUpdateableEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.turkcell.cmm.core.business.entities.BaseUpdateableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,13 +24,20 @@ public class Customer extends BaseUpdateableEntity {
     private Long  customerId;
 
     @Column(name = "identity_no",unique = true)
-    private String identityNo;
+    private int  identityNo;
 
     @Column(name = "name")
     private String name;
 
-   @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
     private CustomerDetail customerDetail;
+//adress ve contact add
+    @JsonManagedReference
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+    private List<Address> addresses;
 
+    @JsonManagedReference
+    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    private Contact contact;
 
 }

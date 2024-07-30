@@ -1,6 +1,6 @@
 package com.turkcell.cmm.entities;
 
-import com.turkcell.cmm.core.entities.BaseEntity;
+import com.turkcell.cmm.core.business.entities.BaseEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

@@ -1,28 +1,30 @@
 package com.turkcell.cmm.controllers;
 
 
-import com.turkcell.cmm.Dtos.Customer.CreateCustomerDto;
-import com.turkcell.cmm.entities.Customer;
-import com.turkcell.cmm.services.abstracts.CustomerService;
-import lombok.RequiredArgsConstructor;
+import com.turkcell.cmm.business.Dtos.Requests.CustomerRequests.AddCustomerRequest;
+import com.turkcell.cmm.business.Dtos.Response.CustomerResponse.AddCustomerResponse;
+import com.turkcell.cmm.business.abstracts.CustomerService;
+import com.turkcell.cmm.core.business.abstracts.MessageService;
+import jakarta.validation.Valid;
+import lombok.AllArgsConstructor;
+
+import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/api/customer")
-@RequiredArgsConstructor
+@RequestMapping("/api/Customer")
+@AllArgsConstructor
 public class CustomerController {
 
-    private final CustomerService customerService;
+    private  CustomerService customerService;
+    private MessageService messageService;
+    @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
+    public AddCustomerResponse add(@Valid @RequestBody AddCustomerRequest addCustomerRequest){
 
-    @GetMapping
-    public List<Customer> getAll(){
-        return customerService.getAll();
+        return this.customerService.add(addCustomerRequest);
     }
 
-    @PostMapping()
-    public void createCustomer(@RequestBody CreateCustomerDto dto){
-        customerService.add(dto);
-    }
+
 }
