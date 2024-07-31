@@ -16,10 +16,11 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class BaseEntity {
 
-    @Column(name="createdDate")
+    @Column(name="create_date")
     private LocalDateTime createDate;
-    @Column(name="createdOperation")
-    private LocalDateTime createdOperation;
+    @Column(name="create_operation")
+    private LocalDateTime createOperation;
+
 
     public LocalDateTime getCreateDate() {
         return createDate;
@@ -29,12 +30,13 @@ public class BaseEntity {
         this.createDate = createDate;
     }
 
-    public LocalDateTime getCreatedOperation() {
-        return createdOperation;
+    public LocalDateTime getCreateOperation() {
+        return createOperation;
     }
 
-    public void setCreatedOperation(LocalDateTime createdOperation) {
-        this.createdOperation = createdOperation;
+    public void setCreateOperation(LocalDateTime createOperation) {
+        this.createOperation = createOperation;
     }
+
 }
 

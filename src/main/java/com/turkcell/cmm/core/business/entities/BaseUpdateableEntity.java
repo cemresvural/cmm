@@ -16,24 +16,24 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class BaseUpdateableEntity extends BaseEntity{
 
-    @Column(name="updatedDate")
-    private LocalDateTime update;
-    @Column(name="updatedOperation")
-    private LocalDateTime updatedOperation;
+    @Column(name="update_date")
+    private LocalDateTime updateDate;
+    @Column(name="update_operation")
+    private LocalDateTime updateOperation;
 
-    public LocalDateTime getUpdate() {
-        return update;
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
     }
 
-    public void setUpdate(LocalDateTime update) {
-        this.update = update;
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
     }
 
-    public LocalDateTime getUpdatedOperation() {
-        return updatedOperation;
+    public LocalDateTime getUpdateOperation() {
+        return updateOperation;
     }
 
-    public void setUpdatedOperation(LocalDateTime updatedOperation) {
-        this.updatedOperation = updatedOperation;
+    public void setUpdateOperation(LocalDateTime updateOperation) {
+        this.updateOperation = updateOperation;
     }
 }

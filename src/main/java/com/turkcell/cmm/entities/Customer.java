@@ -1,7 +1,7 @@
 package com.turkcell.cmm.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import com.turkcell.cmm.core.business.entities.BaseUpdateableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -17,27 +17,37 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM", name="CUSTOMERS")
-public class Customer extends BaseUpdateableEntity {
+public class Customer  {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
     private Long  customerId;
 
+    @Column(name = "nationality_id")
+    private Long nationalityId;
+
+
     @Column(name = "identity_no",unique = true)
-    private int  identityNo;
+    private String  identityNo;
 
-    @Column(name = "name")
-    private String name;
-
-    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer",referencedColumnName = "detailId",insertable=false, updatable=false)
     private CustomerDetail customerDetail;
 //adress ve contact add
-    @JsonManagedReference
-    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
+
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "nationality_id",referencedColumnName = "id",insertable=false, updatable=false)
+    private Countries countries;
+
+
+    @OneToMany(mappedBy= "customer",cascade = CascadeType.ALL)
     private List<Address> addresses;
 
-    @JsonManagedReference
-    @OneToOne(mappedBy = "customer",cascade = CascadeType.ALL)
-    private Contact contact;
+
+   /* @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    private Contact contact;*/
+
+
 
 }

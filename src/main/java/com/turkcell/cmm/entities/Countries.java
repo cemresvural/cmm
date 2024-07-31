@@ -1,11 +1,14 @@
 package com.turkcell.cmm.entities;
 
 import com.turkcell.cmm.core.business.entities.BaseEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,6 +34,10 @@ public class Countries extends BaseEntity {
 
     @Column(name = "country_code", nullable = false)
     private String countryCode;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id",referencedColumnName = "nationality_id",insertable=false, updatable=false)
+    private Countries countries;
 
 
     /*

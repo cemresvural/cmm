@@ -27,10 +27,11 @@ public class Contact {
     @Column(name = "status", nullable = false)
     private String status;
 
-    @OneToOne
-    @JsonBackReference
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id", referencedColumnName = "customer_id")
+    private Contact contact;
 
    /* @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

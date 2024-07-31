@@ -15,13 +15,13 @@ import lombok.Getter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM",name = "CUSTOMER_DETAIL")
-public class CustomerDetail extends BaseUpdateableEntity {
+public class CustomerDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long detailId;
     private String firstName;
     private String lastName;
-
+    private String gender;
     private String birthPlace;
     private String birthDate;
     private String passportNo;

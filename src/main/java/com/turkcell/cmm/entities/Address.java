@@ -1,6 +1,7 @@
 package com.turkcell.cmm.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -26,7 +28,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="CUSTOMER_ADDRESS_ID")
-    private int id;
+    private int address_id;
 
     @Column(name = "STATUS")
     private String status;
@@ -37,8 +39,9 @@ public class Address {
     @Column(name = "CITY_CODE")
     private int city_code;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JsonBackReference
+
+    @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
+
 }
