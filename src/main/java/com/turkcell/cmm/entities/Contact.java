@@ -1,6 +1,7 @@
 package com.turkcell.cmm.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.turkcell.cmm.core.business.entities.BaseUpdateableEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,7 +14,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM", name = "CUSTOMER_CONTACT_INFO")
-public class Contact {
+public class Contact extends BaseUpdateableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,7 +32,7 @@ public class Contact {
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
-    private Contact contact;
+    private Customer customer;
 
    /* @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -23,20 +24,28 @@ public class Customer extends BaseUpdateableEntity {
     @Column(name = "customer_id")
     private Long  customerId;
 
-    @Column(name = "nationality_id")
-    private Long nationalityId;
-
 
     @Column(name = "identity_no",unique = true)
     private String  identityNo;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer",referencedColumnName = "detailId",insertable=false, updatable=false)
-    private CustomerDetail customerDetail;
-//adress ve contact add
+    @Column(name = "status")
+    private String status;
 
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "nationality_id",referencedColumnName = "id",insertable=false, updatable=false)
+    @Column(name = "activation_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date activation_date;
+
+
+    @Column(name = "deactivation_date")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date deactivation_date;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer")
+    private CustomerDetail customerDetail;
+
+    @ManyToOne
+    @JoinColumn(name = "nationality_id")
     private Countries countries;
 
 
@@ -44,7 +53,7 @@ public class Customer extends BaseUpdateableEntity {
     private List<Address> addresses;
 
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Contact> contact;
 
 

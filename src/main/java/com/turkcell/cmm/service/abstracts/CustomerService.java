@@ -9,6 +9,6 @@ import org.springframework.http.ResponseEntity;
 public interface CustomerService {
 //servisler direkt entity classları ile çalışmaz.
 ResponseEntity<CreateCustomerResponse> addCustomer(CreateCustomerRequest createCustomerRequest);
-ResponseEntity<UpdateCustomerResponse> updateCustomer(UpdateCustomerRequest updateCustomerRequest);
+//ResponseEntity<UpdateCustomerResponse> updateCustomer(UpdateCustomerRequest updateCustomerRequest);
 
 }

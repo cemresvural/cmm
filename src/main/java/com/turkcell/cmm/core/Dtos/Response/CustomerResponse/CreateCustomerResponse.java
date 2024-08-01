@@ -18,8 +18,6 @@ public class CreateCustomerResponse {
     private String lastName;
     private Long nationalityId;
     private Date birthDate;
-
-
     private String gender;
     private String  passportNo;
 

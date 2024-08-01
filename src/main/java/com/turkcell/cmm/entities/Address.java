@@ -1,6 +1,7 @@
 package com.turkcell.cmm.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.turkcell.cmm.core.business.entities.BaseUpdateableEntity;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -24,7 +25,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM", name = "CUSTOMER_ADDRESS")
-public class Address {
+public class Address extends BaseUpdateableEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +41,18 @@ public class Address {
     @Column(name = "CITY_CODE")
     private int city_code;
 
+    @Column(name = "address_info")
+    private String addressInfo;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    @OneToOne (cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id",referencedColumnName = "id",insertable=false, updatable=false)
+    @ManyToOne
+    @JoinColumn(name = "address_type_id")
     private AddressTypes addressTypes;
+
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private Countries countries;
 }

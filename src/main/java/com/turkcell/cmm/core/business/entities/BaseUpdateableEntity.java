@@ -2,12 +2,14 @@ package com.turkcell.cmm.core.business.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,23 +19,10 @@ import java.time.LocalDateTime;
 public class BaseUpdateableEntity extends BaseEntity{
 
     @Column(name="update_date")
-    private LocalDateTime updateDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date updateDate;
     @Column(name="update_operation")
-    private LocalDateTime updateOperation;
+    private String updateOperation;
 
-    public LocalDateTime getUpdateDate() {
-        return updateDate;
-    }
 
-    public void setUpdateDate(LocalDateTime updateDate) {
-        this.updateDate = updateDate;
-    }
-
-    public LocalDateTime getUpdateOperation() {
-        return updateOperation;
-    }
-
-    public void setUpdateOperation(LocalDateTime updateOperation) {
-        this.updateOperation = updateOperation;
-    }
 }

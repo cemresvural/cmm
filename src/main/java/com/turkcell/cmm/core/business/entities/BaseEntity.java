@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,26 +18,12 @@ import java.time.LocalDateTime;
 public class BaseEntity {
 
     @Column(name="create_date")
-    private LocalDateTime createDate;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createDate;
     @Column(name="create_operation")
-    private LocalDateTime createOperation;
+    private String createOperation;
 
 
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
-    public LocalDateTime getCreateOperation() {
-        return createOperation;
-    }
-
-    public void setCreateOperation(LocalDateTime createOperation) {
-        this.createOperation = createOperation;
-    }
 
 }
 

@@ -21,12 +21,7 @@ import java.util.Date;
 public class CreateCustomerRequest {
     @NotNull
     private String identityNo;
-    /*
-    *regexp = "\\d+":
-alanın değerinin eşleşmesi gereken düzenli ifadeyi belirtir. Bu durumda, \\d+regex
-\\dbir rakamı (eşdeğeri [0-9]) temsil eder.
-+Önceki öğeden "bir veya daha fazlası" anlamına gelir.
-Yani \\d+ alanın bir veya daha fazla rakam içermesi gerektiğini garanti eder.*/
+
     @NotNull
     private Long nationalityId;
 
@@ -39,8 +34,9 @@ Yani \\d+ alanın bir veya daha fazla rakam içermesi gerektiğini garanti eder.
 
     @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "dd-MM-yyyy")
     @NotNull(message = "This field is required")
-    private Date birthDate;
 
+    private Date birthDate;
+    private String birthPlace;
 
     private String gender;
     private String  passportNo;

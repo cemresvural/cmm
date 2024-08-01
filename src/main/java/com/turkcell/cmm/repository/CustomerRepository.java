@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
-    boolean existsByNationalityId(Long nationalityId);
+
     boolean existsById(Long customerId);
-    List<Customer> findByNationalityId(Long nationalityId);
+
 }

@@ -12,7 +12,7 @@ public class ValidationProblemDetails extends ProblemDetails{
     public ValidationProblemDetails(){
         setTitle("Validation Rule Error");
         setDetail("Validation Problem");
-        setType("http://mydomain.com/exceptions/validation");
+        setType("exceptions/validation");
         setStatus("400");
     }
 
