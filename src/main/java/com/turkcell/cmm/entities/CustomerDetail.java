@@ -15,7 +15,7 @@ import lombok.Getter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM",name = "CUSTOMER_DETAIL")
-public class CustomerDetail {
+public class CustomerDetail extends BaseUpdateableEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long detailId;

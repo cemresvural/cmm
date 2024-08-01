@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -28,7 +29,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="CUSTOMER_ADDRESS_ID")
-    private int address_id;
+    private Long addressId;
 
     @Column(name = "STATUS")
     private String status;
@@ -44,4 +45,7 @@ public class Address {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id",referencedColumnName = "id",insertable=false, updatable=false)
+    private AddressTypes addressTypes;
 }

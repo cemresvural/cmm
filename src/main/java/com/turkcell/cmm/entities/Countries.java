@@ -36,7 +36,7 @@ public class Countries extends BaseEntity {
     private String countryCode;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id",referencedColumnName = "nationality_id",insertable=false, updatable=false)
+    @JoinColumn(name = "id",referencedColumnName = "nationality_id")
     private Countries countries;
 
 

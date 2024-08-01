@@ -1,4 +1,4 @@
-package com.turkcell.cmm.core.utilities.types;
+package com.turkcell.cmm.core.utilities.exceptions.types;
 
 public class BusinessException extends RuntimeException{
 

@@ -1,9 +1,9 @@
-package com.turkcell.cmm.core.utilities.handlers;
+package com.turkcell.cmm.core.utilities.exceptions.handlers;
 
 
-import com.turkcell.cmm.core.utilities.problemDetails.BusinessProblemDetails;
-import com.turkcell.cmm.core.utilities.problemDetails.ValidationProblemDetails;
-import com.turkcell.cmm.core.utilities.types.BusinessException;
+import com.turkcell.cmm.core.utilities.exceptions.problemDetails.BusinessProblemDetails;
+import com.turkcell.cmm.core.utilities.exceptions.problemDetails.ValidationProblemDetails;
+import com.turkcell.cmm.core.utilities.exceptions.types.BusinessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -33,7 +33,9 @@ public class GlobalExceptionHandler {
 
         exception.getBindingResult().getFieldErrors().stream().map(error ->
                 validationErrors.put(error.getField(), error.getDefaultMessage())
-        ).collect(Collectors.toList());
+        ).toList();
+
+
         ValidationProblemDetails validationProblemDetails = new ValidationProblemDetails();
         validationProblemDetails.setErrors(validationErrors);
         return validationProblemDetails;

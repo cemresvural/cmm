@@ -17,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM", name="CUSTOMERS")
-public class Customer  {
+public class Customer extends BaseUpdateableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customer_id")
@@ -44,9 +44,8 @@ public class Customer  {
     private List<Address> addresses;
 
 
-   /* @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    private Contact contact;*/
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    private List<Contact> contact;
 
 
 

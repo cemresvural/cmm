@@ -1,9 +1,9 @@
-package com.turkcell.cmm.core.utilities.problemDetails;
+package com.turkcell.cmm.core.utilities.exceptions.problemDetails;
 
 public class BusinessProblemDetails extends ProblemDetails{
     public BusinessProblemDetails(){
         setTitle("Business Rules Errors");
-        setType("http://mydomain.com/exceptions/business");
+        setType("/exceptions/business");
         setStatus("400");
     }
 }

@@ -1,11 +1,11 @@
-package com.turkcell.cmm.core.utilities.problemDetails;
+package com.turkcell.cmm.core.utilities.exceptions.problemDetails;
 
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
+
 
 @Data
 @AllArgsConstructor
@@ -14,7 +14,7 @@ public class ProblemDetails {
     private String title;
     private String detail;
     private String Status;
-    private String Type;
+    private String type;
 
 
 }
