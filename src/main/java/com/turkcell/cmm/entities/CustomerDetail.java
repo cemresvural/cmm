@@ -19,7 +19,7 @@ import java.util.Date;
 @Table(schema = "CRM",name = "CUSTOMER_DETAIL")
 public class CustomerDetail extends BaseUpdateableEntity{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "detail_id")
     private Long detailId;
     @Column(name = "first_name")

@@ -28,7 +28,7 @@ import lombok.Setter;
 public class Address extends BaseUpdateableEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="CUSTOMER_ADDRESS_ID")
     private Long addressId;
 

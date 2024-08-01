@@ -16,7 +16,7 @@ import lombok.Setter;
 @Table(schema = "CRM", name = "CUSTOMER_CONTACT_INFO")
 public class Contact extends BaseUpdateableEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "contact_type", nullable = false)

@@ -20,7 +20,7 @@ import java.util.List;
 @Table(schema = "CRM", name="CUSTOMERS")
 public class Customer extends BaseUpdateableEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customer_id")
     private Long  customerId;
 

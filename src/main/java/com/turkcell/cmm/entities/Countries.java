@@ -29,7 +29,7 @@ import java.util.List;
 @Table(schema = "CRM",name = "COUNTRIES")
 public class Countries extends BaseUpdateableEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
     private Long id;
 
