@@ -1,10 +1,9 @@
 package com.turkcell.cmm.service.concretes;
 
 import com.turkcell.cmm.core.Dtos.Requests.CustomerRequests.CreateCustomerRequest;
-import com.turkcell.cmm.core.Dtos.Requests.CustomerRequests.UpdateCustomerRequest;
+
 import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.CreateCustomerResponse;
 
-import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.UpdateCustomerResponse;
 import com.turkcell.cmm.entities.Countries;
 import com.turkcell.cmm.entities.Customer;
 import com.turkcell.cmm.entities.CustomerDetail;
@@ -16,7 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+
 import java.util.Date;
 
 
@@ -33,7 +32,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public ResponseEntity<CreateCustomerResponse> addCustomer(CreateCustomerRequest createCustomerRequest) {
-   Countries country= countryService.findById(createCustomerRequest.getNationalityId());
+        Countries country= countryService.findById(createCustomerRequest.getNationalityId());
         Customer customer=new Customer();
         customer.setCountries(country);
         customer.setIdentityNo(createCustomerRequest.getIdentityNo());

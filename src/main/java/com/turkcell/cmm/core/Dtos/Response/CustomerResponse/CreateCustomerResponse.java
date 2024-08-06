@@ -21,4 +21,5 @@ public class CreateCustomerResponse {
     private String gender;
     private String  passportNo;
 
+
 }
