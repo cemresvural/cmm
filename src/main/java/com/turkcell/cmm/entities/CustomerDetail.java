@@ -22,18 +22,23 @@ public class CustomerDetail extends BaseUpdateableEntity{
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "detail_id")
     private Long detailId;
+
     @Column(name = "first_name")
     private String firstName;
+
     @Column(name = "last_name")
     private String lastName;
+
     @Column(name = "gender")
     private String gender;
+
     @Column(name = "birth_place")
     private String birthPlace;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "birth_date")
     private Date birthDate;
+
     @Column(name = "passport_no")
     private String passportNo;
 

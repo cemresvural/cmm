@@ -33,12 +33,12 @@ public class Customer extends BaseUpdateableEntity {
 
     @Column(name = "activation_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date activation_date;
+    private Date activationDate;
 
 
     @Column(name = "deactivation_date")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date deactivation_date;
+    private Date deactivationDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer")

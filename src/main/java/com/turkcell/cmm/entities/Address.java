@@ -1,18 +1,13 @@
 package com.turkcell.cmm.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.turkcell.cmm.core.business.entities.BaseUpdateableEntity;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,10 +31,10 @@ public class Address extends BaseUpdateableEntity {
     private String status;
 
     @Column(name = "POST_CODE")
-    private int post_code;
+    private int postCode;
 
     @Column(name = "CITY_CODE")
-    private int city_code;
+    private int cityCode;
 
     @Column(name = "address_info")
     private String addressInfo;

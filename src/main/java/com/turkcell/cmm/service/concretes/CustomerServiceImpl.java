@@ -13,6 +13,7 @@ import com.turkcell.cmm.entities.CustomerDetail;
 import com.turkcell.cmm.repository.CustomerRepository;
 import com.turkcell.cmm.service.abstracts.CountryService;
 import com.turkcell.cmm.service.abstracts.CustomerService;
+import com.turkcell.cmm.service.utilities.EntityUtil;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
@@ -42,14 +43,14 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     private Customer createCustomer(CreateCustomerRequest createCustomerRequest) {
+        //ccustomer bulamazsa hata fırlat
         Countries country = countryService.findById(createCustomerRequest.getNationalityId());
         Customer customer = new Customer();
         customer.setCountries(country);
         customer.setIdentityNo(createCustomerRequest.getIdentityNo());
         customer.setStatus("active");
-        customer.setActivation_date(new Date());
-        customer.setCreateDate(new Date());
-        customer.setCreateOperation("add customer");
+        customer.setActivationDate(new Date());
+        EntityUtil.setCreateFields("addCustomer" ,customer);
         return customer;
     }
 
@@ -102,4 +103,6 @@ public class CustomerServiceImpl implements CustomerService {
         return customerRepository.findById(id).orElseThrow();
 
     }
+
+
 }

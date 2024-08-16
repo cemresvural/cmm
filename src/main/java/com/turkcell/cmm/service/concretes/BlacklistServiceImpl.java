@@ -143,7 +143,7 @@ public class BlacklistServiceImpl implements BlacklistService {
         return null;
     }
 
-   /* @Override
+    @Override
     public List<GetBlacklistResponse> getBlacklist(GetBlacklistRequest getBlacklistRequest) {
         //blacklist kayıtlarını getir
         Blacklist blacklists = blacklistRepository.findByCustomerIdAndInReason(
@@ -175,6 +175,6 @@ public class BlacklistServiceImpl implements BlacklistService {
             responses.add(response);
         }
         return responses;
-    }*/
+    }
     }
 
