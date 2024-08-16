@@ -43,24 +43,9 @@ public class BlacklistController {
     }
 
     @PostMapping("/remove")
-    public ResponseEntity<RemoveBlacklistResponse> removeBlacklist(@RequestBody RemoveBlacklistRequest removeBlacklistRequest) {
-        Blacklist blacklist = blacklistRepository.findByCustomerIdAndInReason(removeBlacklistRequest.getCustomerId(),InReason.valueOf(removeBlacklistRequest.getInReason()));
-        if (blacklist != null) {
-           // Blacklist blacklist = blacklist.get(); // Mevcut kaydı alıyor
-            blacklist.setOutReason(OutReason.valueOf(removeBlacklistRequest.getOutReason()));
-            blacklist.setOutDate(new Date());
-            blacklist.setStatus(Status.DEACTIVE.getValue());
-            Blacklist savedBlacklist = blacklistRepository.save(blacklist);
+    public RemoveBlacklistResponse removeBlacklist(@RequestBody RemoveBlacklistRequest removeBlacklistRequest) {
+        return blacklistService.removeBlacklist(removeBlacklistRequest);
 
-            RemoveBlacklistResponse response = new RemoveBlacklistResponse();
-            response.setCustomerId(savedBlacklist.getCustomer().getId());
-            response.setOutReason(String.valueOf(savedBlacklist.getOutReason()));
-            response.setStatus(savedBlacklist.getStatus());
-
-            return ResponseEntity.ok(response);
-        } else {
-            throw new BusinessException("Kayıt bulunamadı");
-        }
     }
      @PutMapping("/update")
      public ResponseEntity<UpdateBlacklistResponse> updateBlacklist(@RequestBody UpdateBlacklistRequest updateBlacklistRequest){
