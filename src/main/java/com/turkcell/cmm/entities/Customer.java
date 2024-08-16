@@ -22,7 +22,7 @@ public class Customer extends BaseUpdateableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "customer_id")
-    private Long  customerId;
+    private Long  id;
 
 
     @Column(name = "identity_no",unique = true)
@@ -55,6 +55,9 @@ public class Customer extends BaseUpdateableEntity {
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
     private List<Contact> contact;
+
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
+    private List<Blacklist> blacklists;
 
 
 

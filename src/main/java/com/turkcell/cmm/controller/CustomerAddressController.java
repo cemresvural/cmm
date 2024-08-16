@@ -26,7 +26,7 @@ public class CustomerAddressController {
 
     @PostMapping("/add")
     public ResponseEntity<CreateCustomerAddressResponse> addCustomerAddress(@Valid @RequestBody CreateCustomerAddressRequest createCustomerAddressRequest){
-        return customerAddressService.add(createCustomerAddressRequest);
+        return customerAddressService.addAddress(createCustomerAddressRequest);
 
     }
 

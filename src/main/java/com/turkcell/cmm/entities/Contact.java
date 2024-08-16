@@ -1,8 +1,14 @@
 package com.turkcell.cmm.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.turkcell.cmm.core.business.entities.BaseUpdateableEntity;
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(schema = "CRM", name = "CUSTOMER_CONTACT_INFO")
-public class Contact extends BaseUpdateableEntity {
+public class Contact  extends BaseUpdateableEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -39,5 +45,4 @@ public class Contact extends BaseUpdateableEntity {
 
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;*/
-
 }

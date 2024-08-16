@@ -2,7 +2,12 @@ package com.turkcell.cmm.controller;
 
 
 import com.turkcell.cmm.core.Dtos.Requests.CustomerRequests.CreateCustomerRequest;
+import com.turkcell.cmm.core.Dtos.Requests.CustomerRequests.SearchCustomerRequest;
+import com.turkcell.cmm.core.Dtos.Requests.CustomerRequests.UpdateCustomerRequest;
+import com.turkcell.cmm.core.Dtos.Response.CustomerDetailResponse.CustomerDetailResponse;
 import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.CreateCustomerResponse;
+import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.SearchCustomerResponse;
+import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.UpdateCustomerResponse;
 import com.turkcell.cmm.service.abstracts.CustomerService;
 
 import jakarta.validation.Valid;
@@ -22,4 +27,16 @@ public class CustomerController {
         return customerService.addCustomer(createCustomerRequest);
 
 }
+    @PutMapping("/update")
+    public ResponseEntity<UpdateCustomerResponse> updateCustomer(@Valid @RequestBody UpdateCustomerRequest updateCustomerRequest){
+        return customerService.updateCustomer(updateCustomerRequest);
+    }
+    @GetMapping("/{id}")
+    public CustomerDetailResponse getCustomer(@PathVariable Long id){
+        return customerService.getCustomer(id).getBody();
+    }
+    @GetMapping("/getById/{id}")
+    public ResponseEntity<SearchCustomerResponse> getById(@PathVariable Long id){
+        return ResponseEntity.ok(customerService.getById(id));
+    }
 }

@@ -7,6 +7,6 @@ import org.springframework.http.ResponseEntity;
 
 
 public interface CustomerAddressService {
-    ResponseEntity<CreateCustomerAddressResponse> add(CreateCustomerAddressRequest createCustomerAddressRequest);
+    ResponseEntity<CreateCustomerAddressResponse> addAddress(CreateCustomerAddressRequest createCustomerAddressRequest);
 
 }

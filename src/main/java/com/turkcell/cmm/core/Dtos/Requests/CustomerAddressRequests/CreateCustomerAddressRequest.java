@@ -19,5 +19,8 @@ public class CreateCustomerAddressRequest {
     private int post_code;
     @NotNull
     private int city_code;
+    private Long customerId;
+    private String addressInfo;
+    private Long addressTypes;
 
 }
