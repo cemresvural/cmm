@@ -42,12 +42,14 @@ public class BlacklistServiceImpl implements BlacklistService {
     public AddBlacklistResponse addBlacklistCustomer(AddBlacklistRequest addBlacklistRequest) {
         checkExpireDateForRequest(addBlacklistRequest.getExpireDate());
         InReason inReason = InReason.find(addBlacklistRequest.getInReason());
-        Blacklist blacklist = blacklistRepository.findByCustomerIdAndInReason(addBlacklistRequest.getCustomerId(), inReason);
-        if (blacklist == null) {
+        var  optionalBlacklist = blacklistRepository.findByCustomerIdAndInReason(addBlacklistRequest.getCustomerId(), inReason);
+        Blacklist blacklist=null;
+        if (optionalBlacklist.isEmpty()) {
             blacklist = createBlacklist(addBlacklistRequest.getCustomerId(), inReason, addBlacklistRequest.getExpireDate());
 
 
         } else {
+            blacklist=optionalBlacklist.get();
             blacklist.setInDate(new Date());
             EntityUtil.setUpdateFields("Add Blacklist", blacklist);
             if (Status.DEACTIVE.equals(Status.fromValue(blacklist.getStatus()))) {
