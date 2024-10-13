@@ -1,6 +1,6 @@
 package com.turkcell.cmm.repository;
 
-import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.SearchCustomerResponse;
+import com.turkcell.cmm.service.Dtos.Response.CustomerResponse.SearchCustomerResponse;
 import com.turkcell.cmm.entities.Customer;
 
 import org.springframework.data.jpa.repository.JpaRepository;

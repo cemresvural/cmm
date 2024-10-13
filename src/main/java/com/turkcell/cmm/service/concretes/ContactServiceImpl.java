@@ -1,7 +1,7 @@
 package com.turkcell.cmm.service.concretes;
 
-import com.turkcell.cmm.core.Dtos.Requests.ContactRequests.AddContactRequest;
-import com.turkcell.cmm.core.Dtos.Response.ContactResponses.AddContactResponse;
+import com.turkcell.cmm.service.Dtos.Requests.ContactRequests.AddContactRequest;
+import com.turkcell.cmm.service.Dtos.Response.ContactResponses.AddContactResponse;
 import com.turkcell.cmm.entities.Contact;
 import com.turkcell.cmm.repository.ContactRepository;
 import com.turkcell.cmm.service.abstracts.ContactService;

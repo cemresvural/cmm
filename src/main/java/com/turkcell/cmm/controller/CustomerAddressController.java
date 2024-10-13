@@ -1,8 +1,8 @@
 package com.turkcell.cmm.controller;
 
-import com.turkcell.cmm.core.Dtos.Requests.CustomerAddressRequests.CreateCustomerAddressRequest;
+import com.turkcell.cmm.service.Dtos.Requests.CustomerAddressRequests.CreateCustomerAddressRequest;
 
-import com.turkcell.cmm.core.Dtos.Response.CustomerAddressResponse.CreateCustomerAddressResponse;
+import com.turkcell.cmm.service.Dtos.Response.CustomerAddressResponse.CreateCustomerAddressResponse;
 
 import com.turkcell.cmm.service.abstracts.CustomerAddressService;
 import jakarta.validation.Valid;

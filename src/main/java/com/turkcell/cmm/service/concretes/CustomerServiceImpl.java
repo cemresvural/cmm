@@ -1,11 +1,11 @@
 package com.turkcell.cmm.service.concretes;
 
-import com.turkcell.cmm.core.Dtos.Requests.CustomerRequests.CreateCustomerRequest;
-import com.turkcell.cmm.core.Dtos.Requests.CustomerRequests.UpdateCustomerRequest;
-import com.turkcell.cmm.core.Dtos.Response.CustomerDetailResponse.CustomerDetailResponse;
-import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.CreateCustomerResponse;
-import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.SearchCustomerResponse;
-import com.turkcell.cmm.core.Dtos.Response.CustomerResponse.UpdateCustomerResponse;
+import com.turkcell.cmm.service.Dtos.Requests.CustomerRequests.CreateCustomerRequest;
+import com.turkcell.cmm.service.Dtos.Requests.CustomerRequests.UpdateCustomerRequest;
+import com.turkcell.cmm.service.Dtos.Response.CustomerDetailResponse.CustomerDetailResponse;
+import com.turkcell.cmm.service.Dtos.Response.CustomerResponse.CreateCustomerResponse;
+import com.turkcell.cmm.service.Dtos.Response.CustomerResponse.SearchCustomerResponse;
+import com.turkcell.cmm.service.Dtos.Response.CustomerResponse.UpdateCustomerResponse;
 import com.turkcell.cmm.core.business.rules.CustomerBusinessRules;
 import com.turkcell.cmm.entities.Countries;
 import com.turkcell.cmm.entities.Customer;

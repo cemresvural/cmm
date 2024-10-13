@@ -1,7 +1,7 @@
 package com.turkcell.cmm.service.concretes;
 
-import com.turkcell.cmm.core.Dtos.Requests.CustomerAddressRequests.CreateCustomerAddressRequest;
-import com.turkcell.cmm.core.Dtos.Response.CustomerAddressResponse.CreateCustomerAddressResponse;
+import com.turkcell.cmm.service.Dtos.Requests.CustomerAddressRequests.CreateCustomerAddressRequest;
+import com.turkcell.cmm.service.Dtos.Response.CustomerAddressResponse.CreateCustomerAddressResponse;
 import com.turkcell.cmm.entities.Address;
 import com.turkcell.cmm.entities.Customer;
 import com.turkcell.cmm.repository.CustomerAddressRepository;
