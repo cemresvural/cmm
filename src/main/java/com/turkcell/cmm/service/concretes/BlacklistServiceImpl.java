@@ -128,11 +128,6 @@ public class BlacklistServiceImpl implements BlacklistService {
 
     }
 
-   /* @Override
-    public Customer findById(Long id) {
-        return null;
-    }*/
-
     @Override
     public ResponseEntity<UpdateBlacklistResponse> updateBlacklist(UpdateBlacklistRequest updateBlacklistRequest) {
         var blacklist= modelMapper.map(updateBlacklistRequest, Blacklist.class);
