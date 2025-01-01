@@ -29,11 +29,12 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
-public class BlacklistServiceImpl implements BlacklistService {
+public abstract class BlacklistServiceImpl implements BlacklistService {
     private final BlacklistRepository blacklistRepository;
     private final CustomerService customerService;
     private final ModelMapper modelMapper;
@@ -42,7 +43,7 @@ public class BlacklistServiceImpl implements BlacklistService {
     public AddBlacklistResponse addBlacklistCustomer(AddBlacklistRequest addBlacklistRequest) {
         checkExpireDateForRequest(addBlacklistRequest.getExpireDate());
         InReason inReason = InReason.find(addBlacklistRequest.getInReason());
-        var  optionalBlacklist = blacklistRepository.findByCustomerIdAndInReason(addBlacklistRequest.getCustomerId(), inReason);
+        Optional<Blacklist> optionalBlacklist = Optional.ofNullable(blacklistRepository.findByCustomerIdAndInReason(addBlacklistRequest.getCustomerId(), inReason));
         Blacklist blacklist=null;
         if (optionalBlacklist.isEmpty()) {
             blacklist = createBlacklist(addBlacklistRequest.getCustomerId(), inReason, addBlacklistRequest.getExpireDate());
@@ -140,7 +141,7 @@ public class BlacklistServiceImpl implements BlacklistService {
         return null;
     }
 
-    @Override
+   /* @Override
     public List<GetBlacklistResponse> getBlacklist(GetBlacklistRequest getBlacklistRequest) {
         //blacklist kayıtlarını getir
         Blacklist blacklists = blacklistRepository.findByCustomerIdAndInReason(
@@ -172,6 +173,36 @@ public class BlacklistServiceImpl implements BlacklistService {
             responses.add(response);
         }
         return responses;
-    }
+    }*/
+   @Override
+   public List<GetBlacklistResponse> getBlacklist(@org.jetbrains.annotations.NotNull GetBlacklistRequest getBlacklistRequest) {
+       List<Blacklist> blacklists = (List<Blacklist>) blacklistRepository.findByCustomerIdAndInReason(
+               getBlacklistRequest.getCustomerId(),
+               InReason.valueOf(getBlacklistRequest.getInReason()));
+       if (blacklists == null || blacklists.isEmpty()) {
+           throw new BusinessException("Blacklist registry not found");
+       }
+
+       List<GetBlacklistResponse> responses = new ArrayList<>();
+       Date now = new Date();
+       for (Blacklist blacklist : blacklists) {
+           if (blacklist.getExpireDate() != null && blacklist.getExpireDate().before(now)) {
+               blacklist.setStatus(99);
+               blacklist.setOutReason(OutReason.EXPIRE);
+               blacklist.setOutDate(now);
+               blacklistRepository.save(blacklist);
+           }
+           GetBlacklistResponse response = new GetBlacklistResponse(
+                   blacklist.getInReason(),
+                   blacklist.getInDate(),
+                   blacklist.getOutReason() != null ? blacklist.getOutReason().name() : null,
+                   blacklist.getOutDate(),
+                   blacklist.getStatus(),
+                   blacklist.getExpireDate()
+           );
+           responses.add(response);
+       }
+       return responses;
+   }
     }
 
