@@ -1,13 +1,13 @@
 package com.turkcell.cmm.service.concretes;
 
 import com.turkcell.cmm.service.Dtos.BlacklistRequests.AddBlacklistRequest;
-import com.turkcell.cmm.service.Dtos.BlacklistRequests.GetBlacklistRequest;
+
 import com.turkcell.cmm.service.Dtos.BlacklistRequests.RemoveBlacklistRequest;
 import com.turkcell.cmm.service.Dtos.BlacklistRequests.UpdateBlacklistRequest;
 import com.turkcell.cmm.service.Dtos.Response.BlacklistResponses.AddBlacklistResponse;
 
 
-import com.turkcell.cmm.service.Dtos.Response.BlacklistResponses.GetBlacklistResponse;
+
 import com.turkcell.cmm.service.Dtos.Response.BlacklistResponses.RemoveBlacklistResponse;
 import com.turkcell.cmm.service.Dtos.Response.BlacklistResponses.UpdateBlacklistResponse;
 import com.turkcell.cmm.core.utilities.exceptions.types.BusinessException;
@@ -26,15 +26,13 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+
 
 
 @Service
 @RequiredArgsConstructor
-public abstract class BlacklistServiceImpl implements BlacklistService {
+public class BlacklistServiceImpl implements BlacklistService {
     private final BlacklistRepository blacklistRepository;
     private final CustomerService customerService;
     private final ModelMapper modelMapper;

@@ -8,8 +8,8 @@ import com.turkcell.cmm.service.Dtos.Response.BlacklistResponses.RemoveBlacklist
 import com.turkcell.cmm.service.Dtos.Response.BlacklistResponses.UpdateBlacklistResponse;
 import com.turkcell.cmm.repository.BlacklistRepository;
 
-import com.turkcell.cmm.service.abstracts.BlacklistService;
 
+import com.turkcell.cmm.service.abstracts.BlacklistService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class BlacklistController {
     private final BlacklistRepository blacklistRepository;
-   private final BlacklistService blacklistService;
+    private final BlacklistService blacklistService;
 
 
 
