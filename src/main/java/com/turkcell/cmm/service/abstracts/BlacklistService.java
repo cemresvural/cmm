@@ -20,11 +20,9 @@ import java.util.List;
 public interface BlacklistService {
     AddBlacklistResponse addBlacklistCustomer(AddBlacklistRequest addBlacklistRequest);
     RemoveBlacklistResponse removeBlacklist(RemoveBlacklistRequest removeBlacklistRequest);
-   // Customer findById(Long id);
     ResponseEntity<UpdateBlacklistResponse> updateBlacklist(UpdateBlacklistRequest updateBlacklistRequest);
     Customer getById(Long id);
- List<GetBlacklistResponse> getBlacklist(GetBlacklistRequest getBlacklistRequest);
-    List<Blacklist> findByCustomerIdAndInReason(Long customerId, InReason inReason);
+
 
 
 }

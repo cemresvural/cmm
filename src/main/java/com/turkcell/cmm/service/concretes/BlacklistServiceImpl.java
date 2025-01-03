@@ -39,6 +39,7 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
     private final CustomerService customerService;
     private final ModelMapper modelMapper;
 
+
     @Override
     public AddBlacklistResponse addBlacklistCustomer(AddBlacklistRequest addBlacklistRequest) {
         checkExpireDateForRequest(addBlacklistRequest.getExpireDate());
@@ -78,6 +79,7 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
         return convertBlacklistToResponse(blacklist);
     }
 
+
     private Blacklist createBlacklist(Long customerId, InReason inReason, Date expireDate) {
         Blacklist blacklist = new Blacklist();
 
@@ -112,9 +114,9 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
     public RemoveBlacklistResponse removeBlacklist(RemoveBlacklistRequest removeBlacklistRequest) {
         InReason inReason = InReason.valueOf(removeBlacklistRequest.getInReason());
         Blacklist blacklist = blacklistRepository.findByCustomerIdAndInReason(removeBlacklistRequest.getCustomerId(), inReason)
-                .orElseThrow(()-> new  BusinessException("Blacklist registry not found"));
+                .orElseThrow(() -> new  BusinessException("Blacklist registry not found"));
 
-            blacklist.setStatus(Status.ACTIVE.getValue());
+            blacklist.setStatus(Status.DEACTIVE.getValue());
             blacklist.setOutReason(OutReason.valueOf(removeBlacklistRequest.getOutReason()));
             blacklist.setOutDate(new Date());
             EntityUtil.setUpdateFields("Remove Blacklist",blacklist);
@@ -140,40 +142,7 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
     public Customer getById(Long id) {
         return null;
     }
-/*
-    @Override
-    public List<GetBlacklistResponse> getBlacklist(GetBlacklistRequest getBlacklistRequest) {
-        //blacklist kayıtlarını getir
-        Blacklist blacklists = blacklistRepository.findByCustomerIdAndInReason(
-                getBlacklistRequest.getCustomerId(),
-                InReason.valueOf(getBlacklistRequest.getInReason()));
-        if (blacklists ==null) {
-            throw new BusinessException("Blacklist registry not found");
-        }
 
-        List<GetBlacklistResponse> responses = new ArrayList<>();
-        Date now = new Date();
-//  her bir blacklist kaydı için
-        for (Blacklist blacklist : blacklists) {
-            if (blacklist.getExpireDate() != null && blacklist.getExpireDate().before(now)) {
-                blacklist.setStatus(99);
-                blacklist.setOutReason(OutReason.EXPIRE);
-                blacklist.setOutDate(now);
-                blacklistRepository.save(blacklist);
-
-            }
-            GetBlacklistResponse response = new GetBlacklistResponse(
-                    blacklist.getInReason(),
-                    blacklist.getInDate(),
-                    blacklist.getOutReason() != null ? blacklist.getOutReason().name() : null,
-                    blacklist.getOutDate(),
-                    blacklist.getStatus(),
-                    blacklist.getExpireDate()
-            );
-            responses.add(response);
-        }
-        return responses;
-    }*/
 
     }
 

@@ -69,14 +69,6 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
 
-    /*@Override
-    public ResponseEntity<UpdateCustomerResponse> updateCustomer(UpdateCustomerRequest updateCustomerRequest) {
-        var customer = modelMapper.map(updateCustomerRequest, Customer.class);
-        var updatedCustomer = customerRepository.save(customer);
-        return ResponseEntity.ok(modelMapper.map(updatedCustomer, UpdateCustomerResponse.class));
-    }*/
-
-
     @Override
     public ResponseEntity<UpdateCustomerResponse> updateCustomer(UpdateCustomerRequest updateCustomerRequest) {
         customerBusinessRules.checkCustomerIsExist(updateCustomerRequest.getNationalityId());
