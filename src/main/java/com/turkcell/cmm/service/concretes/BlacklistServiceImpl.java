@@ -43,8 +43,8 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
     public AddBlacklistResponse addBlacklistCustomer(AddBlacklistRequest addBlacklistRequest) {
         checkExpireDateForRequest(addBlacklistRequest.getExpireDate());
         InReason inReason = InReason.find(addBlacklistRequest.getInReason());
-        Optional<Blacklist> optionalBlacklist = Optional.ofNullable(blacklistRepository.findByCustomerIdAndInReason(addBlacklistRequest.getCustomerId(), inReason));
-        Blacklist blacklist=null;
+        var optionalBlacklist = blacklistRepository.findByCustomerIdAndInReason(addBlacklistRequest.getCustomerId(), inReason);
+        Blacklist blacklist= null;
         if (optionalBlacklist.isEmpty()) {
             blacklist = createBlacklist(addBlacklistRequest.getCustomerId(), inReason, addBlacklistRequest.getExpireDate());
 
@@ -111,15 +111,15 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
     @Override
     public RemoveBlacklistResponse removeBlacklist(RemoveBlacklistRequest removeBlacklistRequest) {
         InReason inReason = InReason.valueOf(removeBlacklistRequest.getInReason());
-        Blacklist blacklist = blacklistRepository.findByCustomerIdAndInReason(removeBlacklistRequest.getCustomerId(), inReason);
-        if (blacklist == null) {
-            throw new BusinessException("Blacklist registry not found");
-        } else {
+        Blacklist blacklist = blacklistRepository.findByCustomerIdAndInReason(removeBlacklistRequest.getCustomerId(), inReason)
+                .orElseThrow(()-> new  BusinessException("Blacklist registry not found"));
+
             blacklist.setStatus(Status.ACTIVE.getValue());
             blacklist.setOutReason(OutReason.valueOf(removeBlacklistRequest.getOutReason()));
             blacklist.setOutDate(new Date());
+            EntityUtil.setUpdateFields("Remove Blacklist",blacklist);
             blacklistRepository.save(blacklist);
-        }
+
         RemoveBlacklistResponse response = new RemoveBlacklistResponse();
         response.setCustomerId(blacklist.getCustomer().getId());
         response.setOutReason(String.valueOf(blacklist.getOutReason()));
@@ -140,8 +140,8 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
     public Customer getById(Long id) {
         return null;
     }
-
-   /* @Override
+/*
+    @Override
     public List<GetBlacklistResponse> getBlacklist(GetBlacklistRequest getBlacklistRequest) {
         //blacklist kayıtlarını getir
         Blacklist blacklists = blacklistRepository.findByCustomerIdAndInReason(
@@ -174,35 +174,6 @@ public abstract class BlacklistServiceImpl implements BlacklistService {
         }
         return responses;
     }*/
-   @Override
-   public List<GetBlacklistResponse> getBlacklist(@org.jetbrains.annotations.NotNull GetBlacklistRequest getBlacklistRequest) {
-       List<Blacklist> blacklists = (List<Blacklist>) blacklistRepository.findByCustomerIdAndInReason(
-               getBlacklistRequest.getCustomerId(),
-               InReason.valueOf(getBlacklistRequest.getInReason()));
-       if (blacklists == null || blacklists.isEmpty()) {
-           throw new BusinessException("Blacklist registry not found");
-       }
 
-       List<GetBlacklistResponse> responses = new ArrayList<>();
-       Date now = new Date();
-       for (Blacklist blacklist : blacklists) {
-           if (blacklist.getExpireDate() != null && blacklist.getExpireDate().before(now)) {
-               blacklist.setStatus(99);
-               blacklist.setOutReason(OutReason.EXPIRE);
-               blacklist.setOutDate(now);
-               blacklistRepository.save(blacklist);
-           }
-           GetBlacklistResponse response = new GetBlacklistResponse(
-                   blacklist.getInReason(),
-                   blacklist.getInDate(),
-                   blacklist.getOutReason() != null ? blacklist.getOutReason().name() : null,
-                   blacklist.getOutDate(),
-                   blacklist.getStatus(),
-                   blacklist.getExpireDate()
-           );
-           responses.add(response);
-       }
-       return responses;
-   }
     }
 

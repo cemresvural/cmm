@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer,Long> {
     boolean existsById(Long customerId);
-    @Query("SELECT  new com.turkcell.cmm.core.Dtos.Response.CustomerResponse.SearchCustomerResponse(c.id,c.customerDetail.firstName,c.customerDetail.lastName)" +
+    @Query("SELECT  new com.turkcell.cmm.service.Dtos.Response.CustomerResponse.SearchCustomerResponse(c.id,c.customerDetail.firstName,c.customerDetail.lastName)" +
             " FROM Customer c" +
             " WHERE (c.id = :id)")
     SearchCustomerResponse getCustomerResponseById(@Param("id") Long id);

@@ -1,50 +1,48 @@
 package com.turkcell.cmm.service.concretes;
 
+import com.turkcell.cmm.core.utilities.mappers.ModelMapperService;
+import com.turkcell.cmm.entities.AddressTypes;
+import com.turkcell.cmm.entities.Countries;
+
 import com.turkcell.cmm.service.Dtos.Requests.CustomerAddressRequests.CreateCustomerAddressRequest;
 import com.turkcell.cmm.service.Dtos.Response.CustomerAddressResponse.CreateCustomerAddressResponse;
 import com.turkcell.cmm.entities.Address;
 import com.turkcell.cmm.entities.Customer;
 import com.turkcell.cmm.repository.CustomerAddressRepository;
-import com.turkcell.cmm.repository.CustomerRepository;
+
+import com.turkcell.cmm.service.abstracts.AddressTypeService;
+import com.turkcell.cmm.service.abstracts.CountryService;
 import com.turkcell.cmm.service.abstracts.CustomerAddressService;
+import com.turkcell.cmm.service.abstracts.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class CustomerAddressServiceImpl implements CustomerAddressService {
-    private CustomerAddressRepository customerAddressRepository;
-    private final ModelMapper modelMapper;
-    private CustomerRepository customerRepository;
+    private final CustomerAddressRepository customerAddressRepository;
+    private final ModelMapperService modelMapper;
+    private final CustomerService customerService;
+    private final AddressTypeService addressTypeService;
+    private final CountryService countryService;
+
 
     @Override
     public ResponseEntity<CreateCustomerAddressResponse> addAddress(CreateCustomerAddressRequest createCustomerAddressRequest) {
-        var saveCustomerAddress = modelMapper.map(createCustomerAddressRequest, Address.class);
+        var saveCustomerAddress = modelMapper.forRequest().map(createCustomerAddressRequest, Address.class);
 
-        Customer customer=customerRepository.findById(createCustomerAddressRequest.getCustomerId())
-                .orElseThrow(()->new RuntimeException("customer not found "+createCustomerAddressRequest.getCustomerId()));
+        Customer customer=customerService.getCustomerById(createCustomerAddressRequest.getCustomerId());
+        AddressTypes addressTypes=addressTypeService.findAddressTypeById(createCustomerAddressRequest.getAddressTypes());
+        Countries countries=countryService.findById(createCustomerAddressRequest.getCountryId());
+
         saveCustomerAddress.setCustomer(customer);
+        saveCustomerAddress.setAddressTypes(addressTypes);
+        saveCustomerAddress.setCountries(countries);
         var savedCustomerAddress=customerAddressRepository.save(saveCustomerAddress);
-        return ResponseEntity.ok(modelMapper.map(savedCustomerAddress, CreateCustomerAddressResponse.class));
+        return ResponseEntity.ok(modelMapper.forResponse().map(savedCustomerAddress, CreateCustomerAddressResponse.class));
     }
 
-   /* @Override
-    public CreateCustomerAddressResponse addAddress(CreateCustomerAddressRequest createCustomerAddressRequest) {
-        var saveAddress=modelMapper.map(createCustomerAddressRequest,Address.class);
-        Customer customer=customerRepository.findById(createCustomerAddressRequest.getCustomerId())
-                .orElseThrow(()->new RuntimeException("customer not found with id:" + createCustomerAddressRequest.getCustomerId()));
-
-        saveAddress.setCustomer(customer);
-        addressRepository.save(saveAddress);
-        return modelMapper.map(saveAddress,CreateCustomerAddressResponse.class);
-    }
-
-    @Override
-    public GetAllAddressResponse getAddress(Long addressId) {
-        return this.modelMapper.map(addressRepository.findById(addressId).orElseThrow(()
-                -> new RuntimeException("Address not found with id: " + addressId)), GetAllAddressResponse.class);
-    }*/
 }
 

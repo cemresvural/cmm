@@ -16,11 +16,12 @@ public class CreateCustomerAddressRequest {
 
     private String status;
     @NotNull
-    private int post_code;
+    private int postCode;
     @NotNull
-    private int city_code;
+    private int cityCode;
     private Long customerId;
     private String addressInfo;
     private Long addressTypes;
+    private Long countryId;
 
 }
